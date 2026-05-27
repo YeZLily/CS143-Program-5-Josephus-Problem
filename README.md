@@ -1,0 +1,2 @@
+# Josephus Problem
+The Josephus problem is essentially a game of elimination. There simulation begins with a circle of people (this will be read in from a text file) and an elimination count (this will be randomly generated in the constructor). The program will eliminate people in the circle using the provided count by counting to that number pointing at each person in the circle until the elimination count is reached; the person at that number is then eliminated from the circle.
