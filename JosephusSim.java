@@ -57,10 +57,17 @@ public class JosephusSim {
 
 	public void eliminate() {
 		// count to the elimination count
-
+		PersonNode cur = circle;
+		for(int i = 1; i < eliminationCount; i++) {
+			cur = cur.next;
+		}
+		
 		// print who will be eliminated
+		PersonNode eliminated = cur.next;
+		System.out.println(eliminated.name + " eliminated!");
 
 		// eliminate the person and update "front" of the circle and size
+		
 
 	}
 
