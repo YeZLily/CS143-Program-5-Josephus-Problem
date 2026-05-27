@@ -19,17 +19,21 @@ public class JosephusSim {
 			}
 
 			// make the ring circular by attaching last node's next to front
+			PersonNode cur = circle;
+			while(cur.next != null) {
+				cur = cur.next;
+			}
+			cur.next = circle;
+
+			// remember the last node as the one in front of the next to get eliminated
 			track = circle;
 			while(track.next != null) {
 				track = track.next;
 			}
-			track.next = circle;
-
-			// remember the last node as the one in front of the next to get eliminated
 
 			// generate, print, and save the random elimination count
 			Random rand = new Random();
-			eliminationCount = rand.nextInt(size / 2 - 1) + 1;
+			eliminationCount = rand.nextInt(size / 2) + 1;
 			System.out.println("=== Elimination count is " + eliminationCount + " ===");
 		}
 		catch(FileNotFoundException e) {
@@ -43,11 +47,11 @@ public class JosephusSim {
 			circle = new PersonNode(val);
 		}
 		else {
-			track = circle;
-			while(track.next != null) {
-				track = track.next;
+			PersonNode cur = circle;
+			while(cur.next != null) {
+				cur = cur.next;
 			}
-			track.next = new PersonNode(val);
+			cur.next = new PersonNode(val);
 		}
 	}
 
@@ -72,11 +76,11 @@ public class JosephusSim {
 		}
 		// print the remaining survivors (watch out for infinite loop since list is circular)
 		StringBuilder result = new StringBuilder();
-		track = circle;
+		PersonNode cur = circle;
 		for(int i = 0; i < size; i++) {
-			result.append(track.name);
+			result.append(cur.name);
 			result.append(" ");
-			track = track.next;
+			cur = cur.next;
 		}
 		return result.toString();
 	}
