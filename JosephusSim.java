@@ -39,11 +39,16 @@ public class JosephusSim {
 
 	// optional helper method for constructing the circle
 	private void add(String val) {
-		track = circle;
-		while(track.next != null) {
-			track = track.next;
+		if(circle == null) {
+			circle = new PersonNode(val);
 		}
-		track.next = new PersonNode(val);
+		else {
+			track = circle;
+			while(track.next != null) {
+				track = track.next;
+			}
+			track.next = new PersonNode(val);
+		}
 	}
 
 	public void eliminate() {
