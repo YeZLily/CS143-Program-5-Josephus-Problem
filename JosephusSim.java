@@ -5,7 +5,6 @@ public class JosephusSim {
 	private PersonNode circle;     // a PersonNode pointer that tracks first node
 	private int size;              // the number of people in the circle
 	private int eliminationCount;  // the number to count to for elimination
-	private PersonNode track;      // a PersonNode pointer to help with elimination
 
 	public JosephusSim(String fileName) {
 		try {
@@ -24,12 +23,6 @@ public class JosephusSim {
 				cur = cur.next;
 			}
 			cur.next = circle;
-
-			// remember the last node as the one in front of the next to get eliminated
-			track = circle;
-			for(int i = 0; i < size; i++) {
-				track = track.next;
-			}
 
 			// generate, print, and save the random elimination count
 			Random rand = new Random();
@@ -88,7 +81,7 @@ public class JosephusSim {
 	public String toString() {
 		// if there's only one person left, print them as the last survivor
 		if(size == 1) {
-			return circle.name;
+			return "\nCongratulations " + circle.name + " for being the only survivor!";
 		}
 		// print the remaining survivors (watch out for infinite loop since list is circular)
 		StringBuilder result = new StringBuilder();
