@@ -56,22 +56,28 @@ public class JosephusSim {
 	}
 
 	public void eliminate() {
-		// count to the elimination count
-		PersonNode cur = circle;
-		for(int i = 1; i < eliminationCount - 1; i++) {
-			cur = cur.next;
+		// Special case if elimination count = 1
+		if(eliminationCount == 1) {
+			PersonNode eliminated = circle;
+			System.out.println(eliminated.name + " eliminated!");
+			circle = circle.next;
 		}
+		else {
+			// count to the elimination count
+			PersonNode cur = circle;
+			for(int i = 1; i < eliminationCount; i++) {
+				cur = cur.next;
+			}
 
-		// print who will be eliminated
-		PersonNode eliminated = cur.next;
-		System.out.println(eliminated.name + " eliminated!");
+			// print who will be eliminated
+			PersonNode eliminated = cur.next;
+			System.out.println(eliminated.name + " eliminated!");
 
-		// eliminate the person and update "front" of the circle and size
-		cur.next = eliminated.next;
-		circle = eliminated.next;
+			// eliminate the person and update "front" of the circle and size
+			cur.next = eliminated.next;
+			circle = eliminated.next;
+		}
 		size--;
-
-
 	}
 
 	public boolean isOver() {
@@ -87,9 +93,19 @@ public class JosephusSim {
 		// print the remaining survivors (watch out for infinite loop since list is circular)
 		StringBuilder result = new StringBuilder();
 		PersonNode cur = circle;
+		int count = 0;
 		for(int i = 0; i < size; i++) {
+			count++;
+			result.append(i + 1);
+			result.append(". ");
 			result.append(cur.name);
-			result.append(" ");
+			if(count > 5) {
+				result.append("\n");
+				count = 0;
+			}
+			else {
+				result.append("\t\t");
+			}
 			cur = cur.next;
 		}
 		return result.toString();
