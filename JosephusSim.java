@@ -65,7 +65,7 @@ public class JosephusSim {
 		else {
 			// count to the elimination count
 			PersonNode cur = circle;
-			for(int i = 1; i < eliminationCount; i++) {
+			for(int i = 0; i < eliminationCount - 2; i++) {
 				cur = cur.next;
 			}
 
