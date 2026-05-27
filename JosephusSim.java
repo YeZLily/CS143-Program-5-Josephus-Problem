@@ -27,7 +27,7 @@ public class JosephusSim {
 
 			// remember the last node as the one in front of the next to get eliminated
 			track = circle;
-			while(track.next != null) {
+			for(int i = 0; i < size; i++) {
 				track = track.next;
 			}
 
@@ -58,10 +58,10 @@ public class JosephusSim {
 	public void eliminate() {
 		// count to the elimination count
 		PersonNode cur = circle;
-		for(int i = 1; i < eliminationCount; i++) {
+		for(int i = 1; i < eliminationCount - 1; i++) {
 			cur = cur.next;
 		}
-		
+
 		// print who will be eliminated
 		PersonNode eliminated = cur.next;
 		System.out.println(eliminated.name + " eliminated!");
@@ -70,7 +70,7 @@ public class JosephusSim {
 		cur.next = eliminated.next;
 		circle = eliminated.next;
 		size--;
-		
+
 
 	}
 
